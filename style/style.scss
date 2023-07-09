@@ -1,6 +1,6 @@
 @mixin flexC{
     display: flex;
-    justify-content: space-around   ;
+    justify-content: center;
 }
 
 * {
@@ -15,11 +15,11 @@ body {
 }
 
 #main {
-    margin: 0;
     @include flexC;
+    align-items: center;
     width: 100vh;
     height: 100vh;
-    background-color: rgb(31, 29, 29);
+    background-color: rgb(187, 187, 187);
 }
 
 #paint {
@@ -38,4 +38,9 @@ body {
 
 .colored{
     background-color: aquamarine;
+}
+
+#options {
+    @include flexC;
+    flex-direction: column;
 }

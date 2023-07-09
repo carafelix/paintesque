@@ -4,24 +4,24 @@
 
 body {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   min-width: 100vh;
   min-height: 100vh;
   margin: 0;
 }
 
 #main {
-  margin: 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   width: 100vh;
   height: 100vh;
-  background-color: rgb(31, 29, 29);
+  background-color: rgb(187, 187, 187);
 }
 
 #paint {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-direction: row;
   width: 640px;
   height: 640px;
@@ -36,4 +36,10 @@ body {
 
 .colored {
   background-color: aquamarine;
+}
+
+#options {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }/*# sourceMappingURL=style.css.map */

@@ -1,11 +1,16 @@
-// ------------- DOM elements ---------------
+// ------------- DOM Elements ---------------
 
 const main = document.querySelector('#main') as HTMLDivElement;
 const options = document.querySelector('#options') as HTMLDivElement;
 const paint = document.querySelector('#paint') as HTMLDivElement;
 const slider = document.querySelector('#slider') as HTMLInputElement;
+const output = document.querySelector('output') as HTMLOutputElement;
 
-// ----------- functions -------------------
+// ------------- Elements Atributtes --------
+
+slider.addEventListener('change', onSliderValueChange)
+
+// ------------- Functions ------------------
 
 function getArea(dimension: number){
     let area: number = dimension*dimension;
@@ -31,7 +36,12 @@ function appendAllDivis(arr: HTMLDivElement[]){
 }
 
 function drawCanvas(){
-
+    appendAllDivis(getCanvasElements(getArea(+slider.value)));
+}
+function cleanCanvas(){
+    while (paint.firstChild){
+        paint.removeChild(paint.firstChild)
+    }
 }
 
 function checkMouse(e: MouseEvent){
@@ -42,5 +52,23 @@ function checkMouse(e: MouseEvent){
     }
 }
 
-appendAllDivis(getCanvasElements(getArea(8)));
+function onSliderValueChange(){
+    output.innerText = `${slider.value} x ${slider.value}`;
+    cleanCanvas();
+    drawCanvas();
+}
+
+
+
+
+
+
+
+
+
+
+
+// initial
+output.innerText = `${slider.value} x ${slider.value}`
+appendAllDivis(getCanvasElements(getArea(+slider.value)));
 

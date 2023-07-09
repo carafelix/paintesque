@@ -1,10 +1,13 @@
 "use strict";
-// ------------- DOM elements ---------------
+// ------------- DOM Elements ---------------
 const main = document.querySelector('#main');
 const options = document.querySelector('#options');
 const paint = document.querySelector('#paint');
 const slider = document.querySelector('#slider');
-// ----------- functions -------------------
+const output = document.querySelector('output');
+// ------------- Elements Atributtes --------
+slider.addEventListener('change', onSliderValueChange);
+// ------------- Functions ------------------
 function getArea(dimension) {
     let area = dimension * dimension;
     return area;
@@ -23,10 +26,23 @@ function appendAllDivis(arr) {
     arr.forEach(div => paint.appendChild(div));
 }
 function drawCanvas() {
+    appendAllDivis(getCanvasElements(getArea(+slider.value)));
+}
+function cleanCanvas() {
+    while (paint.firstChild) {
+        paint.removeChild(paint.firstChild);
+    }
 }
 function checkMouse(e) {
     if ((e.buttons === 1)) {
         e.target.classList.add('colored');
     }
 }
-appendAllDivis(getCanvasElements(getArea(8)));
+function onSliderValueChange() {
+    output.innerText = `${slider.value} x ${slider.value}`;
+    cleanCanvas();
+    drawCanvas();
+}
+// initial
+output.innerText = `${slider.value} x ${slider.value}`;
+appendAllDivis(getCanvasElements(getArea(+slider.value)));
