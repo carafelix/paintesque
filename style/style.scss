@@ -1,15 +1,41 @@
+@mixin flexC{
+    display: flex;
+    justify-content: space-around   ;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    @include flexC;
+    min-width: 100vh;
+    min-height: 100vh;
+    margin: 0;
+}
+
 #main {
-    background-color: whitesmoke;
-    min-width: 1000px;
+    margin: 0;
+    @include flexC;
+    width: 100vh;
+    height: 100vh;
+    background-color: rgb(31, 29, 29);
 }
 
 #paint {
-    min-width: 960px;
-    display: flex;
+    @include flexC;
+    flex-direction: row;
+    width: 640px;
+    height: 640px;
+    flex-wrap: wrap;
 }
 
-.paintdivis{
+.paint-divis{
+    background-color: white;
+    outline: black solid 1px;
+    flex: 1 1 80px;
+}
 
-    flex: 1 1 5px;
-
+.colored{
+    background-color: aquamarine;
 }

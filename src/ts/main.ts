@@ -4,7 +4,6 @@ const main = document.querySelector('#main') as HTMLDivElement;
 const options = document.querySelector('#options') as HTMLDivElement;
 const paint = document.querySelector('#paint') as HTMLDivElement;
 const slider = document.querySelector('#slider') as HTMLInputElement;
-const canvas = document.createElement('div') as HTMLDivElement; canvas.setAttribute('id','canvas');
 
 // ----------- functions -------------------
 
@@ -13,15 +12,35 @@ function getArea(dimension: number){
     return area;
 }
 
-function createCanvasDivs(area: number){
+function getCanvasElements(area: number){
+
+    const divisArr: HTMLDivElement[] = []
 
     for (let i = 0; i<area; i++){
-        let div = document.createElement('div') as HTMLDivElement; 
-        div.classList.add('paint-divis');
-        div.setAttribute('id',`${i}`);
+        let i = document.createElement('div') as HTMLDivElement; 
+        i.classList.add('paint-divis');
+        i.addEventListener('mouseover', (e:MouseEvent)=> checkMouse(e));
+        divisArr.push(i);
+    }
+
+    return divisArr;
+}
+
+function appendAllDivis(arr: HTMLDivElement[]){
+    arr.forEach(div => paint.appendChild(div));
+}
+
+function drawCanvas(){
+
+}
+
+function checkMouse(e: MouseEvent){
+
+    if ((e.buttons === 1) ){
+
+        (e.target as HTMLDivElement).classList.add('colored')
     }
 }
 
-createCanvasDivs(getArea(12));
-
+appendAllDivis(getCanvasElements(getArea(8)));
 
