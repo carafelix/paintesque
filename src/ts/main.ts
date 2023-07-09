@@ -24,7 +24,9 @@ function getCanvasElements(area: number){
     for (let i = 0; i<area; i++){
         let i = document.createElement('div') as HTMLDivElement; 
         i.classList.add('paint-divis');
-        i.addEventListener('mouseover', (e:MouseEvent)=> checkMouse(e));
+        i.addEventListener('mouseover', (e:MouseEvent)=> checkMouseDown(e));
+        i.addEventListener('mousedown', (e:MouseEvent)=> clickMouse(e));
+        i.setAttribute('draggable','false');
         divisArr.push(i);
     }
 
@@ -44,7 +46,11 @@ function cleanCanvas(){
     }
 }
 
-function checkMouse(e: MouseEvent){
+function clickMouse(e: MouseEvent){
+    (e.target as HTMLDivElement).classList.add('colored')
+}
+
+function checkMouseDown(e: MouseEvent){
 
     if ((e.buttons === 1) ){
 

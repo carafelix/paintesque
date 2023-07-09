@@ -17,7 +17,9 @@ function getCanvasElements(area) {
     for (let i = 0; i < area; i++) {
         let i = document.createElement('div');
         i.classList.add('paint-divis');
-        i.addEventListener('mouseover', (e) => checkMouse(e));
+        i.addEventListener('mouseover', (e) => checkMouseDown(e));
+        i.addEventListener('mousedown', (e) => clickMouse(e));
+        i.setAttribute('draggable', 'false');
         divisArr.push(i);
     }
     return divisArr;
@@ -33,7 +35,10 @@ function cleanCanvas() {
         paint.removeChild(paint.firstChild);
     }
 }
-function checkMouse(e) {
+function clickMouse(e) {
+    e.target.classList.add('colored');
+}
+function checkMouseDown(e) {
     if ((e.buttons === 1)) {
         e.target.classList.add('colored');
     }
