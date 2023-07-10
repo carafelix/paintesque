@@ -5,6 +5,7 @@ const options = document.querySelector('#options');
 const paint = document.querySelector('#paint');
 const slider = document.querySelector('#slider');
 const output = document.querySelector('output');
+const pencil = document.querySelector('#pencil');
 // ------------- Elements Atributtes --------
 const sliderValues = [8, 16, 24, 32, 40, 48, 64];
 slider.addEventListener('change', onSliderValueChange);
@@ -18,8 +19,9 @@ function getCanvasElements(area) {
     for (let i = 0; i < area; i++) {
         let i = document.createElement('div');
         i.classList.add('paint-divis');
-        i.addEventListener('mouseover', (e) => checkMouseDown(e));
-        i.addEventListener('mousedown', (e) => clickMouse(e));
+        i.addEventListener('mouseover', (e) => checkMouse(e));
+        i.addEventListener('mousedown', (e) => checkMouse(e));
+        i.addEventListener('contextmenu', (e) => e.preventDefault());
         divisArr.push(i);
     }
     return divisArr;
@@ -53,12 +55,12 @@ function onSliderValueChange() {
 }
 //#endregion
 //#region ------ Mouse paint -----------------
-function clickMouse(e) {
-    e.target.classList.add('colored');
-}
-function checkMouseDown(e) {
-    if ((e.buttons === 1)) {
-        e.target.classList.add('colored');
+function checkMouse(e) {
+    if (e.buttons === 1) {
+        e.target.style.backgroundColor = `${pencil.value}`;
+    }
+    else if (e.buttons === 2) {
+        e.target.style.backgroundColor = `#ffffff`;
     }
 }
 // initial
