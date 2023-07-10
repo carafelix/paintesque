@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   user-select: none;
+  -moz-user-select: -moz-none;
 }
 
 body {
@@ -32,7 +33,6 @@ body {
 .paint-divis {
   background-color: white;
   margin: 0;
-  width: 40px;
 }
 
 .colored {

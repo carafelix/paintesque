@@ -8,7 +8,10 @@ const output = document.querySelector('output') as HTMLOutputElement;
 
 // ------------- Elements Atributtes --------
 
-slider.addEventListener('change', onSliderValueChange)
+const sliderValues: number[] = [8,16,24,32,40,48,64];
+
+slider.addEventListener('change', onSliderValueChange);
+
 
 // ------------- Functions ------------------
 
@@ -35,7 +38,7 @@ slider.addEventListener('change', onSliderValueChange)
 
     function appendAllDivisAndSizeThem(arr: HTMLDivElement[]){
 
-        let divSize:string = `${getDivisSize(+slider.value)}px`;
+        let divSize:string = `${getDivisSize(getNumberFromArr(+slider.value, sliderValues))}px`;
 
         arr.forEach(div => div.style.width = divSize);
         arr.forEach(div => div.style.height = divSize);
@@ -48,20 +51,22 @@ slider.addEventListener('change', onSliderValueChange)
 //#endregion
 
 
-//#region ------ Canvas Draw and Size
+//#region ------ Canvas Draw and Size -------------
+
+    function getNumberFromArr(index: number,arr: number[]){
+        return arr[index]
+    }
 
     function drawCanvas(){
 
-        appendAllDivisAndSizeThem(getCanvasElements(getArea(+slider.value)));
+        appendAllDivisAndSizeThem(getCanvasElements(getArea(getNumberFromArr(+slider.value, sliderValues))));
+
     }
 
     function getDivisSize(wide:number){
-        return 640/wide
+        return 640/wide;
     }
 
-    function setDivisSize(px:number){
-        
-    }
 
 
 
@@ -74,9 +79,10 @@ slider.addEventListener('change', onSliderValueChange)
 
 
     function onSliderValueChange(){
-        output.innerText = `${slider.value} x ${slider.value}`;
+
         cleanCanvas();
         drawCanvas();
+        output.innerText = `Pen Size: ${Math.floor(getDivisSize(getNumberFromArr(+slider.value, sliderValues)))} px`;
     }
 
 //#endregion
@@ -112,6 +118,10 @@ function checkMouseDown(e: MouseEvent){
 
 
 // initial
-output.innerText = `${slider.value} x ${slider.value}`
-appendAllDivisAndSizeThem(getCanvasElements(getArea(+slider.value)));
+
+appendAllDivisAndSizeThem(getCanvasElements(getArea(getNumberFromArr(+slider.value, sliderValues))));
+
+output.innerText = `Pen Size: ${Math.floor(getDivisSize(getNumberFromArr(+slider.value, sliderValues)))} px`;
+
+
 

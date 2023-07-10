@@ -6,6 +6,7 @@ const paint = document.querySelector('#paint');
 const slider = document.querySelector('#slider');
 const output = document.querySelector('output');
 // ------------- Elements Atributtes --------
+const sliderValues = [8, 16, 24, 32, 40, 48, 64];
 slider.addEventListener('change', onSliderValueChange);
 // ------------- Functions ------------------
 //#region ------ create and append paint divis 
@@ -24,20 +25,21 @@ function getCanvasElements(area) {
     return divisArr;
 }
 function appendAllDivisAndSizeThem(arr) {
-    let divSize = `${getDivisSize(+slider.value)}px`;
+    let divSize = `${getDivisSize(getNumberFromArr(+slider.value, sliderValues))}px`;
     arr.forEach(div => div.style.width = divSize);
     arr.forEach(div => div.style.height = divSize);
     arr.forEach(div => paint.appendChild(div));
 }
 //#endregion
-//#region ------ Canvas Draw and Size
+//#region ------ Canvas Draw and Size -------------
+function getNumberFromArr(index, arr) {
+    return arr[index];
+}
 function drawCanvas() {
-    appendAllDivisAndSizeThem(getCanvasElements(getArea(+slider.value)));
+    appendAllDivisAndSizeThem(getCanvasElements(getArea(getNumberFromArr(+slider.value, sliderValues))));
 }
 function getDivisSize(wide) {
     return 640 / wide;
-}
-function setDivisSize(px) {
 }
 function cleanCanvas() {
     while (paint.firstChild) {
@@ -45,9 +47,9 @@ function cleanCanvas() {
     }
 }
 function onSliderValueChange() {
-    output.innerText = `${slider.value} x ${slider.value}`;
     cleanCanvas();
     drawCanvas();
+    output.innerText = `Pen Size: ${Math.floor(getDivisSize(getNumberFromArr(+slider.value, sliderValues)))} px`;
 }
 //#endregion
 //#region ------ Mouse paint -----------------
@@ -60,5 +62,5 @@ function checkMouseDown(e) {
     }
 }
 // initial
-output.innerText = `${slider.value} x ${slider.value}`;
-appendAllDivisAndSizeThem(getCanvasElements(getArea(+slider.value)));
+appendAllDivisAndSizeThem(getCanvasElements(getArea(getNumberFromArr(+slider.value, sliderValues))));
+output.innerText = `Pen Size: ${Math.floor(getDivisSize(getNumberFromArr(+slider.value, sliderValues)))} px`;
