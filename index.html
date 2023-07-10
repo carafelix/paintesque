@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./style/style.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.1/dist/html2canvas.min.js"></script>
     <script src="./src/ts/js/main.js" defer></script>
     <title>Paint-esque</title>
 </head>
@@ -13,7 +14,7 @@
 
             <div id="options" class="sidebar-children">
 
-                <div id="ss-div"><button id="screenshot">Screenshot</button></div>  
+                <div id="ss-div"><button id="screenshot">Save it!</button></div>  
                     <p>Eraser: <img src="./src/logos/rightclick.png"></p>
                 <div class="color" id="htmlpicker">
                     <label for="htmlpicker">Color:</label>
@@ -38,5 +39,7 @@
         <div id="paint" class="app"></div>
     </div>
     
+    <script src="./src/ts/js/ss.js"></script>
+
 </body>
 </html>
