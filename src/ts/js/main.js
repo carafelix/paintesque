@@ -19,9 +19,10 @@ function getCanvasElements(area) {
     for (let i = 0; i < area; i++) {
         let i = document.createElement('div');
         i.classList.add('paint-divis');
-        i.addEventListener('mouseover', (e) => checkMouse(e));
-        i.addEventListener('mousedown', (e) => checkMouse(e));
+        i.addEventListener('mouseover', (e) => checkMouseModeTwo(e));
+        i.addEventListener('mousedown', (e) => checkMouseModeTwo(e));
         i.addEventListener('contextmenu', (e) => e.preventDefault());
+        i.setAttribute('data-opa', '0');
         divisArr.push(i);
     }
     return divisArr;
@@ -63,6 +64,37 @@ function checkMouse(e) {
         e.target.style.backgroundColor = `#f9f9f9`;
     }
 }
+// ----------- Opacity mode ------------------
+function getHexOpacity(hex) {
+    return hexObject[hex];
+}
+const hexObject = {
+    '100': 'a0',
+    '110': 'b0',
+    '120': 'c0',
+    '130': 'd0',
+    '140': 'e0'
+};
+function checkMouseModeTwo(e) {
+    if (e.buttons === 1) {
+        // console.log(pencil.value);
+        if (+(e.target.dataset.opa) < 80) {
+            e.target.dataset.opa = `${(+(e.target.dataset.opa) + 20)}`;
+            e.target.style.backgroundColor = `${pencil.value}${e.target.dataset.opa}`;
+        }
+        else if ((+(e.target.dataset.opa) >= 80) && ((+(e.target.dataset.opa) < 140))) {
+            e.target.dataset.opa = `${(+(e.target.dataset.opa) + 20)}`;
+            e.target.style.backgroundColor = `${pencil.value}${getHexOpacity(e.target.dataset.opa)}`;
+        }
+        else {
+            e.target.style.backgroundColor = `${pencil.value}`;
+        }
+    }
+    else if (e.buttons === 2) {
+        e.target.style.backgroundColor = `#f9f9f9`;
+    }
+}
+//#endregion
 // initial
 appendAllDivisAndSizeThem(getCanvasElements(getArea(getNumberFromArr(+slider.value, sliderValues))));
 output.innerText = `Pen Size: ${Math.floor(getDivisSize(getNumberFromArr(+slider.value, sliderValues)))} px`;

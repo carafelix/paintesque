@@ -29,9 +29,10 @@ slider.addEventListener('change', onSliderValueChange);
         for (let i = 0; i<area; i++){
             let i = document.createElement('div') as HTMLDivElement; 
             i.classList.add('paint-divis');
-            i.addEventListener('mouseover', (e:MouseEvent)=> checkMouse(e));
-            i.addEventListener('mousedown', (e:MouseEvent)=> checkMouse(e));
+            i.addEventListener('mouseover', (e:MouseEvent)=> checkMouseModeTwo(e));
+            i.addEventListener('mousedown', (e:MouseEvent)=> checkMouseModeTwo(e));
             i.addEventListener('contextmenu', (e)=> e.preventDefault());
+            i.setAttribute('data-opa','0');
             divisArr.push(i);
         }
 
@@ -94,7 +95,7 @@ slider.addEventListener('change', onSliderValueChange);
 
 //#region ------ Mouse paint -----------------
 
-function checkMouse(e: MouseEvent){
+function checkMouse(e: MouseEvent | any){
 
     if (e.buttons === 1){
 
@@ -106,6 +107,55 @@ function checkMouse(e: MouseEvent){
 
     }
 }
+
+
+// ----------- Opacity mode ------------------
+
+function getHexOpacity(hex:string):string{
+    return hexObject[hex as keyof object];
+}
+
+const hexObject = {
+    '100': 'a0',
+    '110': 'b0',
+    '120': 'c0',
+    '130': 'd0',
+    '140': 'e0'
+};
+
+function checkMouseModeTwo(e: MouseEvent | any){
+
+    if (e.buttons === 1){
+        // console.log(pencil.value);
+
+        if (+(e.target.dataset.opa) < 80){
+
+            e.target.dataset.opa = `${(+(e.target.dataset.opa)+20)}`;
+
+            (e.target as HTMLDivElement).style.backgroundColor = `${pencil.value}${e.target.dataset.opa}`;
+
+        } else if ((+(e.target.dataset.opa) >= 80) && ((+(e.target.dataset.opa) < 140))) {
+
+            e.target.dataset.opa = `${(+(e.target.dataset.opa)+20)}`;
+
+            (e.target as HTMLDivElement).style.backgroundColor = `${pencil.value}${getHexOpacity(e.target.dataset.opa)}`;
+
+        } else {
+            (e.target as HTMLDivElement).style.backgroundColor = `${pencil.value}`;
+        }
+
+        
+
+    } else if (e.buttons === 2) {
+
+    (e.target as HTMLDivElement).style.backgroundColor = `#f9f9f9`;
+
+    }
+}
+
+
+
+//#endregion
 
 
 
