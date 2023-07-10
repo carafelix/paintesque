@@ -9,19 +9,34 @@
 </head>
 <body>
     <div id="main">
-        <div id="options" class="app">
+        <div id="sidebar" class="app">
+
+            <div id="options" class="sidebar-children">
+
+                <div id="screenshot"><button>Screenshot</button></div>  
+
+                <div class="color" id="htmlpicker">
+                    <label for="htmlpicker">Color:</label>
+                    <input type="color" name="pencil" id="pencil" value="#000000" >
+                </div>
+
                 <input id="slider" type="range" value="0" min="0" max="6">
-                <output></output>
-            <div id="colorpicker">
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
-                <div class="color"></div>
+                <output></output> 
+
             </div>
+
+            <div id="social" class="sidebar-children">
+                
+                <a href="https://github.com/carafelix/paintesque"><img src="./src/logos/gh.png"></a>
+                <p>Developed by Carafelix</p>
+
+                
+            </div>
+
+
         </div>
         <div id="paint" class="app"></div>
     </div>
+    
 </body>
 </html>
