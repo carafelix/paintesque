@@ -1,11 +1,22 @@
-# paintesque
-drawing application
+<div align="center"> 
+<h1>Paint-esque</h1>
+<img src="./src/gif/hero.gif" width="750">
+<p><em>A paint-like application</em></p>
+</div>
 
+## Introduction
 
-- implement html2canvas
+As of part of the [Odin Curriculum](https://www.theodinproject.com/lessons/foundations-etch-a-sketch), this proyect comes as challenge to archieve a simple drawing application via DOM Manipulation.
 
-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/color
+## Implementations
 
-- array unshift and points to 0
+- Simple pleasing design with non-disturbing hover animations
+- Ability to download your draw via [html2canvas](https://github.com/niklasvh/html2canvas) implemented via CDN
+- Integrated HTML5 color selector
+- Reset canvas on pencil re-size
+- Right click eraser
 
-- https://htmlcolorcodes.com/color-picker/ the text not the tool. maybe implement something like that
+## to-do 
+- [Performance boost on box-shadow animation](https://tobiasahlin.com/blog/how-to-animate-box-shadow/);
+- Opacity change
+
