@@ -102,7 +102,7 @@ function checkMouse(e: MouseEvent){
 
     } else if (e.buttons === 2) {
 
-    (e.target as HTMLDivElement).style.backgroundColor = `#ffffff`;
+    (e.target as HTMLDivElement).style.backgroundColor = `#f9f9f9`;
 
     }
 }

@@ -60,7 +60,7 @@ function checkMouse(e) {
         e.target.style.backgroundColor = `${pencil.value}`;
     }
     else if (e.buttons === 2) {
-        e.target.style.backgroundColor = `#ffffff`;
+        e.target.style.backgroundColor = `#f9f9f9`;
     }
 }
 // initial
