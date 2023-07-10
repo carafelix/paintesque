@@ -51,12 +51,6 @@ body {
     transition: all 0.5s ease-in-out;
 }
 
-.sidebar-children:hover {
-    box-shadow: -30px 28px rgb(128, 34, 0),
-                         2px 2px 2px #00000078;
-    transition: all 0.3s ease-in-out;
-}
-
 .paint-divis{
     background-color: white;
     margin: 0;
@@ -90,9 +84,15 @@ body {
     padding: 20px;
 
     gap: 1em;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
 
     
+}
+
+.sidebar-children:hover {
+    box-shadow: -30px 28px rgb(128, 34, 0),
+                         2px 2px 2px #00000078;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 #colorpicker {
