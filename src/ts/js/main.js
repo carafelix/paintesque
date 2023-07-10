@@ -8,9 +8,9 @@ const output = document.querySelector('output');
 // ------------- Elements Atributtes --------
 slider.addEventListener('change', onSliderValueChange);
 // ------------- Functions ------------------
-function getArea(dimension) {
-    let area = dimension * dimension;
-    return area;
+//#region ------ create and append paint divis 
+function getArea(n) {
+    return n * n;
 }
 function getCanvasElements(area) {
     const divisArr = [];
@@ -19,22 +19,38 @@ function getCanvasElements(area) {
         i.classList.add('paint-divis');
         i.addEventListener('mouseover', (e) => checkMouseDown(e));
         i.addEventListener('mousedown', (e) => clickMouse(e));
-        i.setAttribute('draggable', 'false');
         divisArr.push(i);
     }
     return divisArr;
 }
-function appendAllDivis(arr) {
+function appendAllDivisAndSizeThem(arr) {
+    let divSize = `${getDivisSize(+slider.value)}px`;
+    arr.forEach(div => div.style.width = divSize);
+    arr.forEach(div => div.style.height = divSize);
     arr.forEach(div => paint.appendChild(div));
 }
+//#endregion
+//#region ------ Canvas Draw and Size
 function drawCanvas() {
-    appendAllDivis(getCanvasElements(getArea(+slider.value)));
+    appendAllDivisAndSizeThem(getCanvasElements(getArea(+slider.value)));
+}
+function getDivisSize(wide) {
+    return 640 / wide;
+}
+function setDivisSize(px) {
 }
 function cleanCanvas() {
     while (paint.firstChild) {
         paint.removeChild(paint.firstChild);
     }
 }
+function onSliderValueChange() {
+    output.innerText = `${slider.value} x ${slider.value}`;
+    cleanCanvas();
+    drawCanvas();
+}
+//#endregion
+//#region ------ Mouse paint -----------------
 function clickMouse(e) {
     e.target.classList.add('colored');
 }
@@ -43,11 +59,6 @@ function checkMouseDown(e) {
         e.target.classList.add('colored');
     }
 }
-function onSliderValueChange() {
-    output.innerText = `${slider.value} x ${slider.value}`;
-    cleanCanvas();
-    drawCanvas();
-}
 // initial
 output.innerText = `${slider.value} x ${slider.value}`;
-appendAllDivis(getCanvasElements(getArea(+slider.value)));
+appendAllDivisAndSizeThem(getCanvasElements(getArea(+slider.value)));
