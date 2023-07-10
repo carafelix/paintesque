@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  user-select: none;
 }
 
 body {
@@ -30,8 +31,8 @@ body {
 
 .paint-divis {
   background-color: white;
-  outline: black solid 1px;
-  flex: 1 1 80px;
+  margin: 0;
+  width: 40px;
 }
 
 .colored {
