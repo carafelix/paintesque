@@ -1,4 +1,5 @@
 * {
+  margin: 0;
   box-sizing: border-box;
   user-select: none;
   font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -57,16 +58,7 @@ body {
   flex-direction: column-reverse;
   background-color: whitesmoke;
   padding: 20px;
-  gap: 5px;
-}
-.sidebar-children #screenshot {
-  margin-top: 10px;
-}
-
-.color {
-  min-width: 20px;
-  min-height: 20px;
-  margin: 5px;
+  gap: 1em;
 }
 
 #colorpicker {
@@ -77,6 +69,11 @@ body {
 
 img {
   width: 50px;
+}
+
+p img {
+  margin-left: 10px;
+  width: 25px;
 }
 
 label {
