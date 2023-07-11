@@ -97,8 +97,18 @@ function checkMouseModeTwo(e) {
         }
     }
     else if (e.buttons === 2) {
-        e.target.style.backgroundColor = `#f9f9f9`;
-        e.target.dataset.opa = 0;
+        if ((+(e.target.dataset.opa) <= 100) && (+(e.target.dataset.opa) > 20)) {
+            e.target.dataset.opa = `${(+(e.target.dataset.opa) - 20)}`;
+            e.target.style.backgroundColor = `${pencil.value}${e.target.dataset.opa}`;
+        }
+        else if ((+(e.target.dataset.opa) >= 80) && ((+(e.target.dataset.opa) <= 140))) {
+            e.target.style.backgroundColor = `${pencil.value}${getHexOpacity(e.target.dataset.opa)}`;
+            e.target.dataset.opa = `${(+(e.target.dataset.opa) - 20)}`;
+        }
+        else {
+            e.target.dataset.opa = '0';
+            e.target.style.backgroundColor = '#f9f9f9';
+        }
     }
 }
 function checkToggleMode() {
