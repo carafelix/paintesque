@@ -83,8 +83,9 @@ const hexObject = {
 };
 function checkMouseModeTwo(e) {
     if (e.buttons === 1) {
-        // console.log(pencil.value);
-        if (+(e.target.dataset.opa) < 80) {
+        if (isChanceTrue(e)) {
+        }
+        else if (+(e.target.dataset.opa) < 80) {
             e.target.dataset.opa = `${(+(e.target.dataset.opa) + 20)}`;
             e.target.style.backgroundColor = `${pencil.value}${e.target.dataset.opa}`;
         }
@@ -117,6 +118,27 @@ function checkToggleMode() {
     }
     else
         return false;
+}
+function isChanceTrue(e) {
+    let chance = mathChance();
+    if ((chance > 90000) && (chance < 100000)) {
+        e.target.dataset.opa = '0';
+        e.target.style.backgroundImage = `url(./src/minesweeper/bomb.png) ${Math.floor(getDivisSize(getNumberFromArr(+slider.value, sliderValues)))}px`;
+        return true;
+        // } else if((chance>90000)&&(chance<97500)){
+        //         e.target.dataset.opa = '0';
+        //         (e.target as HTMLDivElement).style.backgroundImage = 'url(./src/minesweeper/flag.svg)';
+        //             return true
+        // } else if((chance>97500)&&(chance<=100000)){
+        //         e.target.dataset.opa = '0';
+        //         (e.target as HTMLDivElement).style.backgroundImage = 'url(./src/minesweeper/flag.svg)';
+        //             return true
+    }
+    else
+        return false;
+}
+function mathChance() {
+    return Math.floor(Math.random() * 100000);
 }
 //#endregion
 // initial

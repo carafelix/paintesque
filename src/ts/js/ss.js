@@ -1,3 +1,6 @@
+// mostly borrowed code ;)
+// https://parzibyte.me/blog/2019/07/11/html-a-imagen-html2canvas-screenshot-de-pagina-web/
+
 const   ssBtn = document.querySelector("#screenshot"); // El botón que desencadena
 const   canvas = document.querySelector("#paint"); // A qué le tomamos la foto
 
