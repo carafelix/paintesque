@@ -90,4 +90,10 @@ label {
 
 button {
   font-size: 1rem;
+}
+
+#opacity {
+  width: 1rem;
+  height: 1rem;
+  margin-left: 20px;
 }/*# sourceMappingURL=style.css.map */

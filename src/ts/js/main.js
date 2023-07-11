@@ -1,14 +1,14 @@
 "use strict";
 // ------------- DOM Elements ---------------
-const main = document.querySelector('#main');
-const options = document.querySelector('#options');
 const paint = document.querySelector('#paint');
 const slider = document.querySelector('#slider');
 const output = document.querySelector('output');
 const pencil = document.querySelector('#pencil');
+const opacityCheckbox = document.querySelector('#opacity');
 // ------------- Elements Atributtes --------
 const sliderValues = [8, 16, 24, 32, 40, 48, 64];
 slider.addEventListener('change', onSliderValueChange);
+opacityCheckbox.addEventListener('change', () => onSliderValueChange());
 // ------------- Functions ------------------
 //#region ------ create and append paint divis 
 function getArea(n) {
@@ -19,8 +19,14 @@ function getCanvasElements(area) {
     for (let i = 0; i < area; i++) {
         let i = document.createElement('div');
         i.classList.add('paint-divis');
-        i.addEventListener('mouseover', (e) => checkMouseModeTwo(e));
-        i.addEventListener('mousedown', (e) => checkMouseModeTwo(e));
+        if (!checkToggleMode()) {
+            i.addEventListener('mouseover', (e) => checkMouse(e));
+            i.addEventListener('mousedown', (e) => checkMouse(e));
+        }
+        if (checkToggleMode()) {
+            i.addEventListener('mouseover', (e) => checkMouseModeTwo(e));
+            i.addEventListener('mousedown', (e) => checkMouseModeTwo(e));
+        }
         i.addEventListener('contextmenu', (e) => e.preventDefault());
         i.setAttribute('data-opa', '0');
         divisArr.push(i);
@@ -93,6 +99,13 @@ function checkMouseModeTwo(e) {
     else if (e.buttons === 2) {
         e.target.style.backgroundColor = `#f9f9f9`;
     }
+}
+function checkToggleMode() {
+    if (opacityCheckbox.checked) {
+        return true;
+    }
+    else
+        return false;
 }
 //#endregion
 // initial

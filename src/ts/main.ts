@@ -1,11 +1,9 @@
 // ------------- DOM Elements ---------------
-
-const main = document.querySelector('#main') as HTMLDivElement;
-const options = document.querySelector('#options') as HTMLDivElement;
 const paint = document.querySelector('#paint') as HTMLDivElement;
 const slider = document.querySelector('#slider') as HTMLInputElement;
 const output = document.querySelector('output') as HTMLOutputElement;
 const pencil = document.querySelector('#pencil') as HTMLInputElement;
+const opacityCheckbox = document.querySelector('#opacity') as HTMLInputElement;
 
 // ------------- Elements Atributtes --------
 
@@ -13,6 +11,7 @@ const sliderValues: number[] = [8,16,24,32,40,48,64];
 
 slider.addEventListener('change', onSliderValueChange);
 
+opacityCheckbox.addEventListener('change', ()=> onSliderValueChange() );
 
 // ------------- Functions ------------------
 
@@ -29,8 +28,14 @@ slider.addEventListener('change', onSliderValueChange);
         for (let i = 0; i<area; i++){
             let i = document.createElement('div') as HTMLDivElement; 
             i.classList.add('paint-divis');
-            i.addEventListener('mouseover', (e:MouseEvent)=> checkMouseModeTwo(e));
-            i.addEventListener('mousedown', (e:MouseEvent)=> checkMouseModeTwo(e));
+            if (!checkToggleMode()){
+                i.addEventListener('mouseover', (e:MouseEvent)=> checkMouse(e));
+                i.addEventListener('mousedown', (e:MouseEvent)=> checkMouse(e));
+            }
+            if (checkToggleMode()){
+                i.addEventListener('mouseover', (e:MouseEvent)=> checkMouseModeTwo(e));
+                i.addEventListener('mousedown', (e:MouseEvent)=> checkMouseModeTwo(e));
+            }
             i.addEventListener('contextmenu', (e)=> e.preventDefault());
             i.setAttribute('data-opa','0');
             divisArr.push(i);
@@ -151,6 +156,15 @@ function checkMouseModeTwo(e: MouseEvent | any){
     (e.target as HTMLDivElement).style.backgroundColor = `#f9f9f9`;
 
     }
+}
+
+function checkToggleMode(){
+    
+    if (opacityCheckbox.checked) {
+
+        return true
+
+    } else return false
 }
 
 
