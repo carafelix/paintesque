@@ -15,7 +15,7 @@ As of part of the [Odin Curriculum](https://www.theodinproject.com/lessons/found
 - Integrated HTML5 color selector
 - Reset canvas on pencil re-size
 - Right click eraser
-- Fun mode: each time you pass over a div it increases it opacity value, plus it looks like Minesweeper
+- Fun mode: each time you pass over a div it increases it opacity value, plus it looks like Minesweeper. In this mode the eraser behaves removing 1 step of opacity instead.
 
 ## to-do 
 - [Performance boost on box-shadow animation](https://tobiasahlin.com/blog/how-to-animate-box-shadow/);
