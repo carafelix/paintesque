@@ -154,6 +154,7 @@ function checkMouseModeTwo(e: MouseEvent | any){
     } else if (e.buttons === 2) {
 
     (e.target as HTMLDivElement).style.backgroundColor = `#f9f9f9`;
+    e.target.dataset.opa = 0;
 
     }
 }

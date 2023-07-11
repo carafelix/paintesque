@@ -98,6 +98,7 @@ function checkMouseModeTwo(e) {
     }
     else if (e.buttons === 2) {
         e.target.style.backgroundColor = `#f9f9f9`;
+        e.target.dataset.opa = 0;
     }
 }
 function checkToggleMode() {
