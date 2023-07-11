@@ -84,6 +84,10 @@ const hexObject = {
 function checkMouseModeTwo(e) {
     if (e.buttons === 1) {
         if (isChanceTrue(e)) {
+            return;
+        }
+        else if (e.target == bombImg) {
+            return;
         }
         else if (+(e.target.dataset.opa) < 80) {
             e.target.dataset.opa = `${(+(e.target.dataset.opa) + 20)}`;
@@ -119,11 +123,15 @@ function checkToggleMode() {
     else
         return false;
 }
+const bombImg = document.createElement('img');
+bombImg.setAttribute('id', 'child-img');
+bombImg.setAttribute('src', './src/minesweeper/redbomb.png');
+bombImg.style.width = `${getDivisSize(getNumberFromArr(+slider.value, sliderValues))}px`;
 function isChanceTrue(e) {
     let chance = mathChance();
     if ((chance > 90000) && (chance < 100000)) {
         e.target.dataset.opa = '0';
-        e.target.style.backgroundImage = `url(./src/minesweeper/bomb.png) ${Math.floor(getDivisSize(getNumberFromArr(+slider.value, sliderValues)))}px`;
+        e.target.appendChild(bombImg);
         return true;
         // } else if((chance>90000)&&(chance<97500)){
         //         e.target.dataset.opa = '0';
