@@ -1,6 +1,6 @@
 <div align="center"> 
 <h1>Paint-esque</h1>
-<img src="./src/gif/hero.gif" width="750">
+<img src="./src/gif/realhero.gif" width="750">
 <p><em>A paint-like application</em></p>
 </div>
 
