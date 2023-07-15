@@ -19,5 +19,10 @@ As of part of the [Odin Curriculum](https://www.theodinproject.com/lessons/found
 
 ## to-do 
 - [Performance boost on box-shadow animation](https://tobiasahlin.com/blog/how-to-animate-box-shadow/);
+- pen size without canvas redrawing:
+
+	at canvas generation give each div a fixed coordinate, like a1 a2 a3, b1 b2 b3 etc...
+	on mouse event check target div coordinate info
+	if pen size is (pensizeVar), ex 9, and targeted div is ex d5, color too d4 d6 c4 c6 e4 e6. quite doable doing ++ and -- for the rows and array index for the columns
 
 

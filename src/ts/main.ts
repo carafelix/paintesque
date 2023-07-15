@@ -100,7 +100,7 @@ opacityCheckbox.addEventListener('change', ()=> onSliderValueChange() );
 
 //#region ------ Mouse paint -----------------
 
-function checkMouse(e: MouseEvent | any){
+function checkMouse(e: MouseEvent){
 
     if (e.buttons === 1){
 
@@ -128,50 +128,61 @@ const hexObject = {
     '140': 'e0'
 };
 
-function checkMouseModeTwo(e: MouseEvent | any){
+function checkMouseModeTwo(e: MouseEvent){
 
     if (e.buttons === 1){
-        // console.log(pencil.value);
 
-        if (+(e.target.dataset.opa) < 80){
+        if(e.target !== null){
 
-            e.target.dataset.opa = `${(+(e.target.dataset.opa)+20)}`;
+            const target = e.target as HTMLDivElement;
 
-            (e.target as HTMLDivElement).style.backgroundColor = `${pencil.value}${e.target.dataset.opa}`;
+            if(target.dataset.opa !== undefined){
 
-        } else if ((+(e.target.dataset.opa) >= 80) && ((+(e.target.dataset.opa) < 140))) {
+                if (+(target.dataset.opa) < 80){
 
-            e.target.dataset.opa = `${(+(e.target.dataset.opa)+20)}`;
+                    target.dataset.opa = `${(+(target.dataset.opa)+20)}`;
 
-            (e.target as HTMLDivElement).style.backgroundColor = `${pencil.value}${getHexOpacity(e.target.dataset.opa)}`;
+                    (target as HTMLDivElement).style.backgroundColor = `${pencil.value}${target.dataset.opa}`;
 
-        } else {
-            (e.target as HTMLDivElement).style.backgroundColor = `${pencil.value}`;
-        }
+                } else if ((+(target.dataset.opa) >= 80) && ((+(target.dataset.opa) < 140))) {
+
+                    target.dataset.opa = `${(+(target.dataset.opa)+20)}`;
+
+                    (target as HTMLDivElement).style.backgroundColor = `${pencil.value}${getHexOpacity(target.dataset.opa)}`;
+
+                } else {
+                    (target as HTMLDivElement).style.backgroundColor = `${pencil.value}`;
+        }}}
 
         
 
     } else if (e.buttons === 2) {
 
-        if ((+(e.target.dataset.opa) <= 100) && (+(e.target.dataset.opa) > 20 )){
+        if(e.target !== null){
+            
+            const target = e.target as HTMLDivElement;
 
-            e.target.dataset.opa = `${(+(e.target.dataset.opa)-20)}`;
+            if(target.dataset.opa !== undefined){
 
-            (e.target as HTMLDivElement).style.backgroundColor = `${pencil.value}${e.target.dataset.opa}`;
+                if ((+(target.dataset.opa) <= 100) && (+(target.dataset.opa) > 20 )){
 
+                    target.dataset.opa = `${(+(target.dataset.opa)-20)}`;
 
-        } else if ((+(e.target.dataset.opa) >= 80) && ((+(e.target.dataset.opa) <= 140))) {
-
-            (e.target as HTMLDivElement).style.backgroundColor = `${pencil.value}${getHexOpacity(e.target.dataset.opa)}`;
-            e.target.dataset.opa = `${(+(e.target.dataset.opa)-20)}`;
+                    (target as HTMLDivElement).style.backgroundColor = `${pencil.value}${target.dataset.opa}`;
 
 
-        } else {
-            e.target.dataset.opa = '0';
-            (e.target as HTMLDivElement).style.backgroundColor = '#f9f9f9';
-        }
+                } else if ((+(target.dataset.opa) >= 80) && ((+(target.dataset.opa) <= 140))) {
 
-    }
+                    (target as HTMLDivElement).style.backgroundColor = `${pencil.value}${getHexOpacity(target.dataset.opa)}`;
+                    target.dataset.opa = `${(+(target.dataset.opa)-20)}`;
+
+
+                } else {
+                    target.dataset.opa = '0';
+                    (target as HTMLDivElement).style.backgroundColor = '#f9f9f9';
+                }
+
+    }}}
 }
 
 function checkToggleMode(){

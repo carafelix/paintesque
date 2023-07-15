@@ -83,31 +83,40 @@ const hexObject = {
 };
 function checkMouseModeTwo(e) {
     if (e.buttons === 1) {
-        // console.log(pencil.value);
-        if (+(e.target.dataset.opa) < 80) {
-            e.target.dataset.opa = `${(+(e.target.dataset.opa) + 20)}`;
-            e.target.style.backgroundColor = `${pencil.value}${e.target.dataset.opa}`;
-        }
-        else if ((+(e.target.dataset.opa) >= 80) && ((+(e.target.dataset.opa) < 140))) {
-            e.target.dataset.opa = `${(+(e.target.dataset.opa) + 20)}`;
-            e.target.style.backgroundColor = `${pencil.value}${getHexOpacity(e.target.dataset.opa)}`;
-        }
-        else {
-            e.target.style.backgroundColor = `${pencil.value}`;
+        if (e.target !== null) {
+            const target = e.target;
+            if (target.dataset.opa !== undefined) {
+                if (+(target.dataset.opa) < 80) {
+                    target.dataset.opa = `${(+(target.dataset.opa) + 20)}`;
+                    target.style.backgroundColor = `${pencil.value}${target.dataset.opa}`;
+                }
+                else if ((+(target.dataset.opa) >= 80) && ((+(target.dataset.opa) < 140))) {
+                    target.dataset.opa = `${(+(target.dataset.opa) + 20)}`;
+                    target.style.backgroundColor = `${pencil.value}${getHexOpacity(target.dataset.opa)}`;
+                }
+                else {
+                    target.style.backgroundColor = `${pencil.value}`;
+                }
+            }
         }
     }
     else if (e.buttons === 2) {
-        if ((+(e.target.dataset.opa) <= 100) && (+(e.target.dataset.opa) > 20)) {
-            e.target.dataset.opa = `${(+(e.target.dataset.opa) - 20)}`;
-            e.target.style.backgroundColor = `${pencil.value}${e.target.dataset.opa}`;
-        }
-        else if ((+(e.target.dataset.opa) >= 80) && ((+(e.target.dataset.opa) <= 140))) {
-            e.target.style.backgroundColor = `${pencil.value}${getHexOpacity(e.target.dataset.opa)}`;
-            e.target.dataset.opa = `${(+(e.target.dataset.opa) - 20)}`;
-        }
-        else {
-            e.target.dataset.opa = '0';
-            e.target.style.backgroundColor = '#f9f9f9';
+        if (e.target !== null) {
+            const target = e.target;
+            if (target.dataset.opa !== undefined) {
+                if ((+(target.dataset.opa) <= 100) && (+(target.dataset.opa) > 20)) {
+                    target.dataset.opa = `${(+(target.dataset.opa) - 20)}`;
+                    target.style.backgroundColor = `${pencil.value}${target.dataset.opa}`;
+                }
+                else if ((+(target.dataset.opa) >= 80) && ((+(target.dataset.opa) <= 140))) {
+                    target.style.backgroundColor = `${pencil.value}${getHexOpacity(target.dataset.opa)}`;
+                    target.dataset.opa = `${(+(target.dataset.opa) - 20)}`;
+                }
+                else {
+                    target.dataset.opa = '0';
+                    target.style.backgroundColor = '#f9f9f9';
+                }
+            }
         }
     }
 }
