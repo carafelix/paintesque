@@ -199,18 +199,6 @@ function checkToggleMode(){
 //#endregion
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // initial
 
 appendAllDivisAndSizeThem(getCanvasElements(getArea(getNumberFromArr(+slider.value, sliderValues))));
